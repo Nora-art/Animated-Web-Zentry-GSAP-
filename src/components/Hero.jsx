@@ -15,11 +15,13 @@ gsap.registerPlugin(ScrollTrigger)
 const Hero = () => {
     const [currentIndex, setCurrentIndex] = useState(1);
     const [hasClicked, setHasClicked] = useState(false);
+
     const [isLoading, setIsLoading] = useState(true);
     const [loadedVideos, setLoadedVideos] = useState(0);
 
     const totalVideos = 4;
     const nextVideoRef = useRef(null);
+
     const handleVideoLoad = (e) => {
         setLoadedVideos(prev => prev +1);
     }
@@ -32,7 +34,7 @@ const Hero = () => {
     const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
 
     const handleMiniVdClick = () => {
-        setIsLoading(true);
+        setIsLoading(false); // reset loading
         setCurrentIndex(upcomingVideoIndex);
         setHasClicked(true);
 
@@ -99,7 +101,7 @@ const Hero = () => {
     <div className="relative h-dvh w-screen overflow-x-hidden">
 
         {isLoading && (
-            <div className="flex-center absolute z=[100] h-dvh w-screen overflow-hidden bg-violet-50">
+            <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
                 <div className="three-body">
                     <div className="three-body__dot" />
                     <div className="three-body__dot" />
